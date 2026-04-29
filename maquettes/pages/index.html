@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AccessiAdapt : Sélection du profil</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="profil_selection.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="col-brand">
+        <div class="brand-top">
+          <div class="brand-logo">
+            <div class="brand-logo-mark">
+              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="4" cy="4" r="2.5" />
+                <circle cx="12" cy="4" r="2.5" />
+                <circle cx="4" cy="12" r="2.5" />
+                <circle cx="12" cy="12" r="2.5" />
+              </svg>
+            </div>
+            <span class="brand-name">AccessiAdapt</span>
+          </div>
+
+          <h1 class="brand-headline">
+            Une interface<br />
+            qui s'adapte<br />
+            à toi.
+          </h1>
+          <p class="brand-body">
+            Pas de compromis. Pas de configuration compliquée. Choisis ton
+            profil — l'interface fait le reste.
+          </p>
+        </div>
+
+        <div class="brand-bottom">
+          <div class="brand-step">Étape 1 sur 3</div>
+          <div class="brand-progress">
+            <div class="progress-dot active"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="col-content">
+        <div id="screen-select">
+          <div class="content-header">
+            <p class="content-eyebrow">Configuration initiale</p>
+            <h2 class="content-title">Quel est ton profil&nbsp;?</h2>
+            <p class="content-sub">
+              Tu peux en sélectionner plusieurs si tu as plusieurs besoins. Ce
+              choix peut être modifié à tout moment dans les paramètres.
+            </p>
+          </div>
+
+          <div class="profiles-grid">
+            <div
+              class="profile-card card-visuel"
+              id="card-visuel"
+              onclick="toggleProfile('visuel')"
+              role="checkbox"
+              aria-checked="false"
+              tabindex="0"
+              onkeydown="
+                if (event.key === 'Enter' || event.key === ' ')
+                  toggleProfile('visuel');
+              "
+            >
+              <div class="card-check" aria-hidden="true">
+                <svg viewBox="0 0 12 12">
+                  <polyline points="1.5,6 5,9.5 10.5,2.5" />
+                </svg>
+              </div>
+              <img
+                class="card-image"
+                src="https://images.unsplash.com/photo-1516585427167-9f4af9627e6c?w=500&q=80"
+                alt="Personne utilisant un lecteur d'écran"
+                loading="lazy"
+              />
+              <div class="card-body">
+                <div class="card-label">Profil visuel</div>
+                <div class="card-title">Handicap visuel</div>
+                <div class="card-desc">
+                  Difficulté à lire l'écran, sensibilité aux contrastes, basse
+                  vision ou cécité partielle.
+                </div>
+                <div class="card-tags">
+                  <span class="tag">Grand texte</span>
+                  <span class="tag">Contraste fort</span>
+                  <span class="tag">Synthèse vocale</span>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="profile-card card-moteur"
+              id="card-moteur"
+              onclick="toggleProfile('moteur')"
+              role="checkbox"
+              aria-checked="false"
+              tabindex="0"
+              onkeydown="
+                if (event.key === 'Enter' || event.key === ' ')
+                  toggleProfile('moteur');
+              "
+            >
+              <div class="card-check" aria-hidden="true">
+                <svg viewBox="0 0 12 12">
+                  <polyline points="1.5,6 5,9.5 10.5,2.5" />
+                </svg>
+              </div>
+              <img
+                class="card-image"
+                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&q=80"
+                alt="Personne travaillant avec un dispositif d'assistance"
+                loading="lazy"
+              />
+              <div class="card-body">
+                <div class="card-label">Profil moteur</div>
+                <div class="card-title">Handicap moteur</div>
+                <div class="card-desc">
+                  Difficulté à cliquer précisément, contrôle limité de la souris
+                  ou du clavier.
+                </div>
+                <div class="card-tags">
+                  <span class="tag">Gros boutons</span>
+                  <span class="tag">Mono-bouton</span>
+                  <span class="tag">Balayage auto</span>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="profile-card card-auditif"
+              id="card-auditif"
+              onclick="toggleProfile('auditif')"
+              role="checkbox"
+              aria-checked="false"
+              tabindex="0"
+              onkeydown="
+                if (event.key === 'Enter' || event.key === ' ')
+                  toggleProfile('auditif');
+              "
+            >
+              <div class="card-check" aria-hidden="true">
+                <svg viewBox="0 0 12 12">
+                  <polyline points="1.5,6 5,9.5 10.5,2.5" />
+                </svg>
+              </div>
+              <img
+                class="card-image"
+                src="https://images.unsplash.com/photo-1588776814546-1ffbb3f7e8a5?w=500&q=80"
+                alt="Interface numérique avec sous-titres"
+                loading="lazy"
+              />
+              <div class="card-body">
+                <div class="card-label">Profil auditif</div>
+                <div class="card-title">Handicap auditif</div>
+                <div class="card-desc">
+                  Surdité partielle ou totale, difficulté à percevoir les sons
+                  ou alertes sonores.
+                </div>
+                <div class="card-tags">
+                  <span class="tag">Sous-titres</span>
+                  <span class="tag">Alertes visuelles</span>
+                  <span class="tag">Transcription</span>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="profile-card card-cognitif"
+              id="card-cognitif"
+              onclick="toggleProfile('cognitif')"
+              role="checkbox"
+              aria-checked="false"
+              tabindex="0"
+              onkeydown="
+                if (event.key === 'Enter' || event.key === ' ')
+                  toggleProfile('cognitif');
+              "
+            >
+              <div class="card-check" aria-hidden="true">
+                <svg viewBox="0 0 12 12">
+                  <polyline points="1.5,6 5,9.5 10.5,2.5" />
+                </svg>
+              </div>
+              <img
+                class="card-image"
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500&q=80"
+                alt="Personne travaillant sereinement sur une interface simple"
+                loading="lazy"
+              />
+              <div class="card-body">
+                <div class="card-label">Profil cognitif</div>
+                <div class="card-title">Handicap cognitif</div>
+                <div class="card-desc">
+                  Surcharge mentale, troubles de l'attention, de la mémoire ou
+                  de la compréhension.
+                </div>
+                <div class="card-tags">
+                  <span class="tag">Interface simple</span>
+                  <span class="tag">Guidage pas à pas</span>
+                  <span class="tag">Pictogrammes</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="card-standard"
+            id="card-standard"
+            onclick="toggleStandard()"
+            role="checkbox"
+            aria-checked="false"
+            tabindex="0"
+            onkeydown="
+              if (event.key === 'Enter' || event.key === ' ') toggleStandard();
+            "
+          >
+            <div class="standard-icon">
+              <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 3a8 8 0 100 16A8 8 0 0011 3z" />
+                <path d="M11 7v4l2.5 2.5" stroke-linecap="round" />
+              </svg>
+            </div>
+            <div class="standard-info">
+              <div class="standard-title">Profil standard ou combiné</div>
+              <div class="standard-desc">
+                Plusieurs besoins à la fois, ou je préfère configurer moi-même.
+              </div>
+            </div>
+            <div class="standard-check">
+              <svg viewBox="0 0 12 12">
+                <polyline points="1.5,6 5,9.5 10.5,2.5" />
+              </svg>
+            </div>
+          </div>
+
+          <div class="action-footer">
+            <p class="hint-text" id="hint-text">
+              Sélectionne au moins un profil pour continuer.
+            </p>
+            <button
+              class="btn-continue"
+              id="btn-continue"
+              disabled
+              onclick="goToConfirm()"
+            >
+              Continuer
+              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M3 8h10M9 4l4 4-4 4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div id="screen-confirm">
+          <div class="confirm-wrapper">
+            <div class="confirm-header">
+              <div class="confirm-check-circle">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <polyline
+                    points="4,12 9,17 20,6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <h2 class="confirm-title">Profil configuré</h2>
+              <p class="confirm-sub" id="confirm-sub"></p>
+            </div>
+
+            <div class="confirm-recap">
+              <div class="recap-label">Adaptations activées</div>
+              <div class="recap-items" id="recap-items"></div>
+            </div>
+
+            <div class="confirm-actions">
+              <button class="btn-launch" onclick="launchApp()">
+                Lancer AccessiAdapt
+              </button>
+              <button class="btn-back" onclick="goBack()">
+                Modifier le profil
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="../script/index.js"></script>
+  </body>
+</html>
