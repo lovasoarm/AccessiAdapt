@@ -1,0 +1,145 @@
+/* ── Mode Cognitif — surcharge global.css ── */
+
+/* Interface ultra-épurée — 1 tâche à la fois, zéro surcharge */
+
+.page-title {
+  font-size: 30px;
+}
+
+.page-instr {
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+/* Une seule action visible à la fois */
+.action-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.action-item {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 22px 24px;
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    background 0.15s;
+  outline: none;
+  text-decoration: none;
+}
+
+.action-item:hover {
+  border-color: var(--border-h);
+  background: #f9f8f5;
+}
+.action-item:focus-visible {
+  box-shadow: 0 0 0 2px var(--text);
+}
+.action-item:active {
+  background: #f0eee9;
+}
+
+/* Pictogramme — carré simple */
+.action-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: var(--bg);
+  border: 0.5px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.action-pic svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--text);
+  stroke-width: 1.6;
+  fill: none;
+}
+
+.action-label {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text);
+  flex: 1;
+}
+
+.action-arrow {
+  width: 16px;
+  height: 16px;
+  stroke: var(--muted);
+  stroke-width: 1.8;
+  fill: none;
+  flex-shrink: 0;
+}
+
+/* Barre de progression étape */
+.step-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.step-label {
+  font-size: 13px;
+  color: var(--sub);
+  white-space: nowrap;
+}
+
+.step-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.step-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--border);
+}
+
+.step-dot.active {
+  background: var(--text);
+}
+
+/* Guidage contextuel */
+.guide-box {
+  padding: 14px 18px;
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-left: 2px solid var(--border-h);
+  border-radius: var(--radius);
+  margin-bottom: 28px;
+  font-size: 15px;
+  color: var(--sub);
+  line-height: 1.6;
+}
+
+/* Feedback */
+.feedback {
+  display: none;
+  padding: 16px 20px;
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.footer {
+  border-top-color: var(--border);
+}
