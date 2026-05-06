@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AccessiAdapt — Mode Moteur</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mode_moteur.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="app-name">AccessiAdapt — Mode Moteur</div>
+      <h1 class="page-title">Menu principal</h1>
+      <p class="page-instr">
+        Le curseur défile automatiquement. Appuie sur
+        <strong>Valider</strong> ou sur <strong>Espace</strong> quand c'est la
+        bonne option.
+      </p>
+
+      <!-- Vitesse de balayage -->
+      <div class="speed-bar">
+        <span class="speed-label"
+          >Vitesse : <b id="speed-label">Normale</b></span
+        >
+        <input
+          class="speed-input"
+          id="speed-input"
+          type="range"
+          min="1"
+          max="5"
+          value="3"
+        />
+      </div>
+
+      <!-- Actions en balayage -->
+      <div class="action-list" id="action-list"></div>
+
+      <!-- Option active -->
+      <div
+        class="focus-bar"
+        style="
+          margin-bottom: 20px;
+          padding: 10px 16px;
+          background: var(--surface);
+          border: 0.5px solid var(--border);
+          border-radius: var(--radius);
+          font-size: 14px;
+          color: var(--sub);
+        "
+      >
+        En surbrillance : <b id="scan-label">—</b>
+      </div>
+
+      <!-- Feedback -->
+      <div class="feedback" id="feedback"></div>
+
+      <!-- Bouton de validation — seul bouton nécessaire -->
+      <div class="validate-wrap">
+        <button class="btn-validate" onclick="validate()">Valider</button>
+      </div>
+
+      <div class="footer">
+        <span class="hint">Mode mono-bouton · Balayage automatique</span>
+        <a href="profil_selection.html">
+          <button class="btn btn-secondary">Changer de profil</button>
+        </a>
+      </div>
+    </div>
+    <script src="mode_moteur.js"></script>
+  </body>
+</html>
