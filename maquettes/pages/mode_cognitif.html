@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AccessiAdapt — Mode Cognitif</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/global.css" />
+    <link rel="stylesheet" href="../styles/mode_cognitif.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="app-name">AccessiAdapt — Mode Cognitif</div>
+      <h1 class="page-title">Que veux-tu faire&nbsp;?</h1>
+      <p class="page-instr">
+        Choisis une seule action. Je t'aide ensuite étape par étape.
+      </p>
+
+      <!-- Progression -->
+      <div class="step-bar">
+        <span class="step-label" id="step-label">Choix de l'action</span>
+        <div class="step-dots" id="step-dots"></div>
+      </div>
+
+      <!-- Guidage contextuel -->
+      <div class="guide-box" id="guide-text"></div>
+
+      <!-- Actions avec pictogrammes -->
+      <div class="action-list" id="action-list"></div>
+
+      <!-- Feedback -->
+      <div class="feedback" id="feedback"></div>
+
+      <div class="footer">
+        <span class="hint">Interface simplifiée · Guidage pas à pas</span>
+        <a href="../pages/index.html">
+          <button class="btn btn-secondary">Changer de profil</button>
+        </a>
+      </div>
+    </div>
+    <script src="../scripts/mode_cognitif.js"></script>
+  </body>
+</html>
