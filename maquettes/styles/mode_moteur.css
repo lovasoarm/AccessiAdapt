@@ -1,0 +1,148 @@
+/* ── Mode Moteur — surcharge style.css ── */
+
+/* Mêmes couleurs que le mode standard */
+
+.page-title {
+  font-size: 30px;
+}
+.page-instr {
+  font-size: 16px;
+}
+
+/* Vitesse réglable */
+.speed-bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 18px;
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 24px;
+}
+
+.speed-label {
+  font-size: 13px;
+  color: var(--sub);
+  white-space: nowrap;
+}
+
+.speed-label b {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.speed-input {
+  flex: 1;
+  appearance: none;
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.speed-input::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--text);
+  cursor: pointer;
+}
+
+/* Actions en balayage — grandes cibles */
+.action-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.action-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 28px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    background 0.15s;
+  outline: none;
+}
+
+.action-item:focus-visible {
+  box-shadow: 0 0 0 2px var(--text);
+}
+
+.action-item.scanning {
+  background: #f5f3ec;
+  border: 2px solid var(--text);
+}
+
+.action-label {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.action-arrow {
+  width: 18px;
+  height: 18px;
+  stroke: var(--muted);
+  stroke-width: 1.8;
+  fill: none;
+  flex-shrink: 0;
+}
+
+.action-item.scanning .action-arrow {
+  stroke: var(--text);
+}
+
+/* Bouton de validation — énorme, centré */
+.validate-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.btn-validate {
+  padding: 20px 56px;
+  background: var(--text);
+  color: var(--surface);
+  border: none;
+  border-radius: var(--radius-lg);
+  font-family: var(--font);
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.15s;
+  width: 100%;
+}
+
+.btn-validate:hover {
+  opacity: 0.85;
+}
+.btn-validate:active {
+  opacity: 0.7;
+}
+
+/* Feedback */
+.feedback {
+  display: none;
+  padding: 14px 18px;
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 16px;
+  color: var(--text);
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.footer {
+  border-top-color: var(--border);
+}
