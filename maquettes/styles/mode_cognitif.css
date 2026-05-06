@@ -44,7 +44,7 @@
 }
 .action-item:active {
   background: var(--on-bg);
-  border-color: var(--border-h);
+  border: 0.5px solid var(--text);
 }
 
 /* Pictogramme — carré simple */

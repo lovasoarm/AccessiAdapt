@@ -20,7 +20,6 @@ const ACTIONS = [
   },
 ];
 
-let currentStep = 0;
 const totalSteps = ACTIONS.length;
 
 function init() {
@@ -46,11 +45,9 @@ function renderList() {
     item.tabIndex = 0;
     item.setAttribute("role", "button");
     item.innerHTML =
-      '<div class="action-pic">' +
-      '<svg viewBox="0 0 20 20">' +
+      '<div class="action-pic"><svg viewBox="0 0 20 20">' +
       icons[i] +
-      "</svg>" +
-      "</div>" +
+      "</svg></div>" +
       '<span class="action-label">' +
       action.label +
       "</span>" +
@@ -58,17 +55,28 @@ function renderList() {
       '<path d="M5 10h10M11 6l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/>' +
       "</svg>";
 
-    item.addEventListener("click", () => selectAction(i));
+    item.addEventListener("click", () => {
+      setClicked(item);
+      selectAction(i);
+    });
     item.addEventListener("focus", () => updateGuide(i));
     item.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
+        setClicked(item);
         selectAction(i);
       }
     });
 
     list.appendChild(item);
   });
+}
+
+function setClicked(el) {
+  document
+    .querySelectorAll(".action-item")
+    .forEach((item) => item.classList.remove("clicked"));
+  el.classList.add("clicked");
 }
 
 function renderSteps() {
@@ -90,11 +98,9 @@ function updateGuide(i) {
     return;
   }
   box.textContent = ACTIONS[i].guide;
-
-  document.querySelectorAll(".step-dot").forEach((d, idx) => {
-    d.classList.toggle("active", idx === i);
-  });
-
+  document
+    .querySelectorAll(".step-dot")
+    .forEach((d, idx) => d.classList.toggle("active", idx === i));
   document.getElementById("step-label").textContent =
     "Étape " + (i + 1) + " sur " + totalSteps;
 }
@@ -103,9 +109,7 @@ function selectAction(i) {
   const fb = document.getElementById("feedback");
   fb.textContent = ACTIONS[i].label + " — c'est parti.";
   fb.style.display = "block";
-
   updateGuide(i);
-
   setTimeout(() => {
     fb.style.display = "none";
   }, 2500);
