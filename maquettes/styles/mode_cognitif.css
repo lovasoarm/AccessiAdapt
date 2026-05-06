@@ -37,13 +37,14 @@
 
 .action-item:hover {
   border-color: var(--border-h);
-  background: #f9f8f5;
+  background: var(--on-bg);
 }
 .action-item:focus-visible {
   box-shadow: 0 0 0 2px var(--text);
 }
 .action-item:active {
-  background: #f0eee9;
+  background: var(--on-bg);
+  border-color: var(--border-h);
 }
 
 /* Pictogramme — carré simple */
