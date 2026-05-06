@@ -1,4 +1,4 @@
-/* ── AccessiAdapt — Design System ── */
+/* ── AccessiAdapt — Global Design System ── */
 
 *,
 *::before,
@@ -8,14 +8,16 @@
   padding: 0;
 }
 
+/* ── Tokens dark mode (défaut) ── */
 :root {
-  --bg: #f7f6f3;
-  --surface: #ffffff;
-  --border: #e0ddd8;
-  --border-h: #bfbbb5;
-  --text: #1c1c1a;
-  --sub: #6b6860;
-  --muted: #a09b95;
+  --bg: #0e0e0c;
+  --surface: #1a1a17;
+  --border: #2c2c28;
+  --border-h: #484844;
+  --text: #f0eee6;
+  --sub: #8a8880;
+  --muted: #555350;
+  --on-bg: #242420;
   --radius: 10px;
   --radius-lg: 14px;
   --font: "Inter", system-ui, sans-serif;
@@ -98,7 +100,7 @@ body {
 
 .card.on {
   border: 1.5px solid var(--text);
-  background: #f0eee9;
+  background: var(--on-bg);
 }
 
 .card-top {
@@ -121,7 +123,7 @@ body {
   line-height: 1.5;
 }
 
-/* Checkbox rond */
+/* ── Checkbox rond ── */
 .chk {
   width: 20px;
   height: 20px;
@@ -149,12 +151,11 @@ body {
   background: var(--text);
   border-color: var(--text);
 }
-
 .on .chk svg {
-  stroke: var(--surface);
+  stroke: var(--bg);
 }
 
-/* ── Carte standard ── */
+/* ── Carte standard/combiné ── */
 .card-std {
   background: var(--surface);
   border: 0.5px solid var(--border);
@@ -175,7 +176,7 @@ body {
 }
 .card-std.on {
   border: 1.5px solid var(--text);
-  background: #f0eee9;
+  background: var(--on-bg);
 }
 .card-std:focus-visible {
   box-shadow: 0 0 0 2px var(--text);
@@ -208,7 +209,7 @@ body {
   border-color: var(--text);
 }
 .card-std.on .std-ico svg {
-  stroke: var(--surface);
+  stroke: var(--bg);
 }
 
 .std-body {
@@ -263,9 +264,8 @@ body {
 
 .btn-primary {
   background: var(--text);
-  color: var(--surface);
+  color: var(--bg);
 }
-
 .btn-primary:not(:disabled):hover {
   opacity: 0.85;
 }
@@ -279,7 +279,6 @@ body {
   border: 0.5px solid var(--border-h);
   color: var(--text);
 }
-
 .btn-secondary:hover {
   background: var(--surface);
 }
@@ -299,7 +298,7 @@ body {
   display: block;
 }
 
-/* ── Écran confirmation ── */
+/* ── Confirmation ── */
 .cf-top {
   display: flex;
   align-items: center;
@@ -321,7 +320,7 @@ body {
 .cf-circle svg {
   width: 18px;
   height: 18px;
-  stroke: var(--surface);
+  stroke: var(--bg);
   stroke-width: 2.5;
   fill: none;
 }
@@ -371,7 +370,6 @@ body {
   background: var(--text);
   flex-shrink: 0;
 }
-
 .recap-name {
   font-size: 15px;
   font-weight: 500;
