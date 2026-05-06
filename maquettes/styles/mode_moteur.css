@@ -79,7 +79,7 @@
 }
 
 .action-item.scanning {
-  background: #f5f3ec;
+  background: var(--on-bg);
   border: 2px solid var(--text);
 }
 
