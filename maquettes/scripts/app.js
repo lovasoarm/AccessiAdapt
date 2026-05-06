@@ -136,7 +136,21 @@ function launchApp() {
     .map((k) => (k === "s" ? "standard" : PROFILES[k].name.toLowerCase()))
     .join("+");
 
-  window.location.href = "mode_standard.html";
+  const destinations = {
+    visuel: "mode_visuel.html",
+    moteur: "mode_moteur.html",
+    auditif: "mode_auditif.html",
+    cognitif: "mode_cognitif.html",
+    standard: "mode_standard.html",
+  };
+
+  const firstKey = [...selected][0];
+  const dest =
+    firstKey === "s"
+      ? "mode_standard.html"
+      : destinations[PROFILES[firstKey].name.toLowerCase()];
+
+  window.location.href = dest;
 }
 
 function showScreen(id) {
