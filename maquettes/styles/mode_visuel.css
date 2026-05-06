@@ -1,0 +1,158 @@
+/* ── Mode Visuel — surcharge style.css ── */
+
+:root {
+  --bg: #0e0e0c;
+  --surface: #1b1b18;
+  --border: #303030;
+  --border-h: #505050;
+  --text: #f0eee6;
+  --sub: #9a9590;
+  --muted: #606060;
+}
+
+body {
+  padding: 48px 24px;
+}
+
+.page-title {
+  font-size: 34px;
+}
+.page-instr {
+  font-size: 18px;
+  border-left-color: var(--border-h);
+}
+
+/* Barre TTS */
+.tts-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 24px;
+}
+
+.tts-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--text);
+  flex-shrink: 0;
+  animation: blink 1.4s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.tts-text {
+  font-size: 14px;
+  color: var(--sub);
+  font-style: italic;
+}
+
+/* Indicateur focus */
+.focus-bar {
+  padding: 10px 16px;
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 14px;
+  color: var(--sub);
+  margin-bottom: 24px;
+}
+
+.focus-bar b {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* Liste actions — grandes cibles */
+.action-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.action-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 24px;
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: border-color 0.15s;
+  outline: none;
+}
+
+.action-item:hover {
+  border-color: var(--border-h);
+}
+.action-item.focused {
+  border: 1.5px solid var(--text);
+}
+.action-item:focus-visible {
+  box-shadow: 0 0 0 2px var(--text);
+}
+
+.action-label {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.action-arrow {
+  width: 18px;
+  height: 18px;
+  stroke: var(--sub);
+  stroke-width: 1.8;
+  fill: none;
+  flex-shrink: 0;
+}
+
+.action-item.focused .action-arrow {
+  stroke: var(--text);
+}
+
+/* Navigation clavier */
+.nav-hint {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+
+.kbd {
+  display: inline-block;
+  padding: 2px 7px;
+  background: var(--surface);
+  border: 0.5px solid var(--border-h);
+  border-radius: 4px;
+  font-size: 12px;
+  color: var(--sub);
+  font-family: monospace;
+}
+
+/* Footer */
+.footer {
+  border-top-color: var(--border);
+}
+.btn {
+  font-size: 17px;
+  padding: 16px 32px;
+}
+
+.btn-secondary {
+  border-color: var(--border-h);
+  color: var(--sub);
+}
