@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AccessiAdapt — Mode Auditif</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mode_auditif.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="app-name">AccessiAdapt — Mode Auditif</div>
+      <h1 class="page-title">Menu principal</h1>
+      <p class="page-instr">
+        Toutes les informations sont affichées à l'écran. Aucune alerte sonore.
+      </p>
+
+      <!-- Statut audio désactivé -->
+      <div class="status-bar">
+        <div class="status-dot off"></div>
+        Son désactivé — toutes les alertes sont visuelles
+      </div>
+
+      <!-- Actions -->
+      <div class="action-list" id="action-list"></div>
+
+      <!-- Notification visuelle -->
+      <div class="notif-zone">
+        <div class="notif" id="notif">
+          <div class="notif-icon">
+            <svg viewBox="0 0 20 20">
+              <polyline
+                points="3,10 8,15 17,5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <span id="notif-label"></span>
+        </div>
+      </div>
+
+      <!-- Sous-titres / description action -->
+      <div class="subtitles-bar">
+        <div class="subtitles-label">Description</div>
+        <div class="subtitles-text" id="subtitles-text">
+          Survole ou clique sur une action pour voir sa description.
+        </div>
+      </div>
+
+      <div class="footer">
+        <span class="hint">Mode visuel uniquement · Zéro dépendance audio</span>
+        <a href="profil_selection.html">
+          <button class="btn btn-secondary">Changer de profil</button>
+        </a>
+      </div>
+    </div>
+    <script src="mode_auditif.js"></script>
+  </body>
+</html>
