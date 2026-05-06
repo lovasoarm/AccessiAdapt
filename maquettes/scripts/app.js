@@ -84,49 +84,6 @@ function updateFooter() {
   }
 }
 
-function goConfirm() {
-  const list = document.getElementById("recap-list");
-  list.innerHTML = "";
-
-  selected.forEach((k) => {
-    const p =
-      k === "s"
-        ? {
-            name: "Standard / Personnalisé",
-            adapt: "Configuration manuelle complète",
-          }
-        : PROFILES[k];
-
-    const row = document.createElement("div");
-    row.className = "recap-row";
-    row.innerHTML =
-      '<div class="recap-bar"></div>' +
-      "<div>" +
-      '<div class="recap-name">' +
-      p.name +
-      "</div>" +
-      '<div class="recap-adapt">' +
-      p.adapt +
-      "</div>" +
-      "</div>";
-    list.appendChild(row);
-  });
-
-  const sub = document.getElementById("cf-sub");
-  if (selected.has("s")) {
-    sub.textContent = "Tous les paramètres sont accessibles manuellement.";
-  } else if (selected.size > 1) {
-    sub.textContent =
-      "Profil combiné — toutes les adaptations compatibles sont activées.";
-  } else {
-    const name = PROFILES[[...selected][0]].name;
-    sub.textContent =
-      "Mode " + name + " activé — interface adaptée automatiquement.";
-  }
-
-  showScreen("screen-confirm");
-}
-
 function goBack() {
   showScreen("screen-select");
 }
