@@ -1,0 +1,405 @@
+/* ── AccessiAdapt — Design System ── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #f7f6f3;
+  --surface: #ffffff;
+  --border: #e0ddd8;
+  --border-h: #bfbbb5;
+  --text: #1c1c1a;
+  --sub: #6b6860;
+  --muted: #a09b95;
+  --radius: 10px;
+  --radius-lg: 14px;
+  --font: "Inter", system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 48px 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 660px;
+}
+
+/* ── Typographie ── */
+.app-name {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sub);
+  margin-bottom: 16px;
+}
+
+.page-title {
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.page-instr {
+  font-size: 16px;
+  color: var(--sub);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  padding: 14px 18px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  border-left: 2px solid var(--border-h);
+}
+
+/* ── Grille cartes ── */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* ── Carte profil ── */
+.card {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px 20px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: border-color 0.15s;
+  outline: none;
+  user-select: none;
+}
+
+.card:hover {
+  border-color: var(--border-h);
+}
+.card:focus-visible {
+  box-shadow: 0 0 0 2px var(--text);
+}
+
+.card.on {
+  border: 1.5px solid var(--text);
+  background: #f0eee9;
+}
+
+.card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.card-name {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.15;
+}
+
+.card-desc {
+  font-size: 14px;
+  color: var(--sub);
+  line-height: 1.5;
+}
+
+/* Checkbox rond */
+.chk {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--border-h);
+  flex-shrink: 0;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+
+.chk svg {
+  width: 9px;
+  height: 9px;
+  stroke: transparent;
+  stroke-width: 2.5;
+  fill: none;
+}
+
+.on .chk {
+  background: var(--text);
+  border-color: var(--text);
+}
+
+.on .chk svg {
+  stroke: var(--surface);
+}
+
+/* ── Carte standard ── */
+.card-std {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: border-color 0.15s;
+  margin-bottom: 28px;
+  outline: none;
+  user-select: none;
+}
+
+.card-std:hover {
+  border-color: var(--border-h);
+}
+.card-std.on {
+  border: 1.5px solid var(--text);
+  background: #f0eee9;
+}
+.card-std:focus-visible {
+  box-shadow: 0 0 0 2px var(--text);
+}
+
+.std-ico {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: 0.5px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+
+.std-ico svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--sub);
+  stroke-width: 1.8;
+  fill: none;
+}
+
+.card-std.on .std-ico {
+  background: var(--text);
+  border-color: var(--text);
+}
+.card-std.on .std-ico svg {
+  stroke: var(--surface);
+}
+
+.std-body {
+  flex: 1;
+}
+.std-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text);
+}
+.std-sub {
+  font-size: 13px;
+  color: var(--sub);
+  margin-top: 3px;
+}
+
+/* ── Footer ── */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.hint {
+  font-size: 14px;
+  color: var(--sub);
+  flex: 1;
+  line-height: 1.5;
+}
+.hint b {
+  font-weight: 500;
+  color: var(--text);
+}
+
+/* ── Boutons ── */
+.btn {
+  padding: 12px 26px;
+  border-radius: var(--radius);
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    opacity 0.15s,
+    background 0.15s;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--text);
+  color: var(--surface);
+}
+
+.btn-primary:not(:disabled):hover {
+  opacity: 0.85;
+}
+.btn-primary:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 0.5px solid var(--border-h);
+  color: var(--text);
+}
+
+.btn-secondary:hover {
+  background: var(--surface);
+}
+
+/* ── Séparateur ── */
+.sep {
+  height: 1px;
+  background: var(--border);
+  margin: 28px 0;
+}
+
+/* ── Écrans ── */
+.screen {
+  display: none;
+}
+.screen.active {
+  display: block;
+}
+
+/* ── Écran confirmation ── */
+.cf-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.cf-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cf-circle svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--surface);
+  stroke-width: 2.5;
+  fill: none;
+}
+
+.cf-title {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text);
+}
+.cf-sub {
+  font-size: 14px;
+  color: var(--sub);
+  margin-top: 5px;
+  line-height: 1.5;
+}
+
+.recap-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.recap-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.recap-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.recap-bar {
+  width: 3px;
+  height: 30px;
+  border-radius: 2px;
+  background: var(--text);
+  flex-shrink: 0;
+}
+
+.recap-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+}
+.recap-adapt {
+  font-size: 13px;
+  color: var(--sub);
+  margin-top: 3px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 400px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 520px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .btn {
+    text-align: center;
+  }
+}
