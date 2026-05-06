@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AccessiAdapt — Mode Visuel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mode_visuel.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="app-name">AccessiAdapt — Mode Visuel</div>
+      <h1 class="page-title">Menu principal</h1>
+      <p class="page-instr">
+        Navigue avec les touches <span class="kbd">↑</span>
+        <span class="kbd">↓</span> ou clique. Appuie sur
+        <span class="kbd">Entrée</span> pour valider.
+      </p>
+
+      <!-- TTS actif -->
+      <div class="tts-bar">
+        <div class="tts-dot"></div>
+        <div class="tts-text" id="tts-text">"Chargement..."</div>
+      </div>
+
+      <!-- Focus actuel -->
+      <div class="focus-bar">Focus actuel : <b id="focus-label">—</b></div>
+
+      <!-- Actions -->
+      <div class="action-list" id="action-list"></div>
+
+      <!-- Feedback action -->
+      <div
+        id="feedback"
+        style="
+          display: none;
+          padding: 14px 18px;
+          background: var(--surface);
+          border: 0.5px solid var(--border);
+          border-radius: var(--radius);
+          font-size: 16px;
+          color: var(--text);
+          margin-bottom: 24px;
+        "
+      ></div>
+
+      <div class="footer">
+        <span class="hint">Mode contraste fort · Synthèse vocale active</span>
+        <a href="profil_selection.html">
+          <button class="btn btn-secondary">Changer de profil</button>
+        </a>
+      </div>
+    </div>
+    <script src="mode_visuel.js"></script>
+  </body>
+</html>
