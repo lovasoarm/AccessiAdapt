@@ -3,6 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+      rel="icon"
+      type="image/png"
+      href="../../assets/logo/favicon.png"
+      sizes="32x32"
+    />
     <title>Mode Moteur</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
@@ -22,7 +28,7 @@
         bonne option.
       </p>
 
-      <!-- Vitesse de balayage -->
+     
       <div class="speed-bar">
         <span class="speed-label"
           >Vitesse : <b id="speed-label">Normale</b></span
@@ -37,10 +43,9 @@
         />
       </div>
 
-      <!-- Actions en balayage -->
       <div class="action-list" id="action-list"></div>
 
-      <!-- Option active -->
+   
       <div
         class="focus-bar"
         style="
@@ -56,10 +61,9 @@
         En surbrillance : <b id="scan-label">—</b>
       </div>
 
-      <!-- Feedback -->
       <div class="feedback" id="feedback"></div>
 
-      <!-- Bouton de validation — seul bouton nécessaire -->
+      <!-- Bouton de validation (seul bouton nécessaire) -->
       <div class="validate-wrap">
         <button class="btn-validate" onclick="validate()">Valider</button>
       </div>
