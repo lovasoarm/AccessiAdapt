@@ -1,12 +1,7 @@
-/* ── Mode Standard — surcharge global.css ── */
-
-/* Hérite du dark mode global — rien à changer sur les couleurs */
-
 .page-title {
   font-size: 30px;
 }
 
-/* Liste d'actions principale */
 .action-list {
   display: flex;
   flex-direction: column;
@@ -59,7 +54,6 @@
   stroke: var(--sub);
 }
 
-/* Feedback */
 .feedback {
   display: none;
   padding: 14px 18px;
