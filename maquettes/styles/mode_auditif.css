@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 21c79e635a10aa6b2cac9423fd6c7fcd60c17fdb
 .page-title {
   font-size: 30px;
 }
@@ -30,7 +34,10 @@
   background: var(--muted);
 }
 
+<<<<<<< HEAD
 /* Liste des actions */
+=======
+>>>>>>> 21c79e635a10aa6b2cac9423fd6c7fcd60c17fdb
 .action-list {
   display: flex;
   flex-direction: column;
@@ -78,6 +85,10 @@
   flex-shrink: 0;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 21c79e635a10aa6b2cac9423fd6c7fcd60c17fdb
 .notif-zone {
   min-height: 56px;
   margin-bottom: 24px;
@@ -119,6 +130,10 @@
   fill: none;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 21c79e635a10aa6b2cac9423fd6c7fcd60c17fdb
 .subtitles-bar {
   padding: 12px 18px;
   background: var(--surface);
