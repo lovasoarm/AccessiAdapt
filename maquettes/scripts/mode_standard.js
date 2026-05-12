@@ -8,9 +8,15 @@ const ACTIONS = [
 ];
 
 function init() {
-  const list = document.getElementById("action-list");
+  const profiles = getProfiles();
+  const config = buildConfig(profiles);
+  applyConfig(config);
+  renderList();
+}
 
-  ACTIONS.forEach((label, i) => {
+function renderList() {
+  const list = document.getElementById("action-list");
+  ACTIONS.forEach((label) => {
     const item = document.createElement("div");
     item.className = "action-item";
     item.tabIndex = 0;
@@ -22,7 +28,6 @@ function init() {
       '<svg class="action-arrow" viewBox="0 0 20 20">' +
       '<path d="M5 10h10M11 6l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/>' +
       "</svg>";
-
     item.addEventListener("click", () => selectAction(label));
     item.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
@@ -30,7 +35,6 @@ function init() {
         selectAction(label);
       }
     });
-
     list.appendChild(item);
   });
 }

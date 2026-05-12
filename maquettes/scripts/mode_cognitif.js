@@ -23,6 +23,10 @@ const ACTIONS = [
 const totalSteps = ACTIONS.length;
 
 function init() {
+  const profiles = getProfiles();
+  const config = buildConfig(profiles);
+  applyConfig(config);
+
   renderList();
   renderSteps();
   updateGuide(-1);

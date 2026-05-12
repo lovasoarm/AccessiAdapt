@@ -9,6 +9,9 @@ const ACTIONS = [
 let focusIndex = 0;
 
 function init() {
+  const profiles = getProfiles();
+  const config = buildConfig(profiles);
+  applyConfig(config);
   renderList();
   setFocus(0);
   speak(ACTIONS[0]);

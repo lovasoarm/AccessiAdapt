@@ -16,6 +16,10 @@ const ACTIONS = [
 let notifTimer = null;
 
 function init() {
+  const profiles = getProfiles();
+  const config = buildConfig(profiles);
+  applyConfig(config);
+
   renderList();
 }
 

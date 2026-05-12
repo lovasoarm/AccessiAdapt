@@ -6,12 +6,15 @@ const ACTIONS = [
   "Paramètres",
   "Quitter",
 ];
+
 let scanIndex = 0;
 let scanTimer = null;
 let scanSpeed = 1500;
-let isPaused = false;
 
 function init() {
+  const profiles = getProfiles();
+  const config = buildConfig(profiles);
+  applyConfig(config);
   renderList();
   updateSpeedLabel();
   startScan();
