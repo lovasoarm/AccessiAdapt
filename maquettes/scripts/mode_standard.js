@@ -46,7 +46,7 @@ function selectAction(label) {
   }
 
   const fb = document.getElementById("feedback");
-  fb.textContent = label + " — ouvert";
+  fb.textContent = label + " : ouvert";
   fb.style.display = "block";
   setTimeout(() => {
     fb.style.display = "none";

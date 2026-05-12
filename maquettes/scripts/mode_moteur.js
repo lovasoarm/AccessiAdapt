@@ -78,7 +78,7 @@ function validate() {
   clearInterval(scanTimer);
 
   const fb = document.getElementById("feedback");
-  fb.textContent = selected + " — sélectionné";
+  fb.textContent = selected + " : sélectionné";
   fb.style.display = "block";
 
   setTimeout(() => {

@@ -73,7 +73,7 @@ function moveFocus(dir) {
 
 function selectAction(i) {
   speak(ACTIONS[i] + " — ouvert");
-  document.getElementById("feedback").textContent = ACTIONS[i] + " — ouvert";
+  document.getElementById("feedback").textContent = ACTIONS[i] + " : ouvert";
   document.getElementById("feedback").style.display = "block";
   setTimeout(() => {
     document.getElementById("feedback").style.display = "none";
