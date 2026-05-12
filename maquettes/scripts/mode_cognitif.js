@@ -98,7 +98,7 @@ function updateGuide(i) {
   const box = document.getElementById("guide-text");
   if (i === -1) {
     box.textContent =
-      "Choisis une action. Prends ton temps — il n'y a pas d'urgence.";
+      "Choisis une action. Prends ton temps, il n'y a pas d'urgence.";
     return;
   }
   box.textContent = ACTIONS[i].guide;
@@ -111,7 +111,7 @@ function updateGuide(i) {
 
 function selectAction(i) {
   const fb = document.getElementById("feedback");
-  fb.textContent = ACTIONS[i].label + " — c'est parti.";
+  fb.textContent = ACTIONS[i].label + " : c'est parti.";
   fb.style.display = "block";
   updateGuide(i);
   setTimeout(() => {

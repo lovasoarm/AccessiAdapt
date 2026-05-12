@@ -54,7 +54,7 @@ function renderList() {
 }
 
 function selectAction(i) {
-  showNotif(ACTIONS[i].label + " — ouvert");
+  showNotif(ACTIONS[i].label + " : ouvert");
   showSubtitle(i);
 }
 

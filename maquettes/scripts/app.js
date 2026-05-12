@@ -80,7 +80,7 @@ function updateFooter() {
   if (names.length === 1) {
     hint.innerHTML = "<b>Profil " + names[0] + "</b> sélectionné.";
   } else {
-    hint.innerHTML = "<b>Profil combiné</b> — " + names.join(" + ") + ".";
+    hint.innerHTML = "<b>Profil combiné</b> : " + names.join(" + ") + ".";
   }
 }
 
