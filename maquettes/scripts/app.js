@@ -88,25 +88,21 @@ function goBack() {
   showScreen("screen-select");
 }
 
+function resolveDestination(selected) {
+  const profiles = [...selected].join(",");
+
+  if (selected.has("s") || selected.size === 4) {
+    return "mode_standard.html?profiles=" + profiles;
+  }
+  if (selected.has("m")) return "mode_moteur.html?profiles=" + profiles;
+  if (selected.has("v")) return "mode_visuel.html?profiles=" + profiles;
+  if (selected.has("c")) return "mode_cognitif.html?profiles=" + profiles;
+  if (selected.has("a")) return "mode_auditif.html?profiles=" + profiles;
+  return "mode_standard.html?profiles=" + profiles;
+}
+
 function launchApp() {
-  const profil = [...selected]
-    .map((k) => (k === "s" ? "standard" : PROFILES[k].name.toLowerCase()))
-    .join("+");
-
-  const destinations = {
-    visuel: "mode_visuel.html",
-    moteur: "mode_moteur.html",
-    auditif: "mode_auditif.html",
-    cognitif: "mode_cognitif.html",
-    standard: "mode_standard.html",
-  };
-
-  const firstKey = [...selected][0];
-  const dest =
-    firstKey === "s"
-      ? "mode_standard.html"
-      : destinations[PROFILES[firstKey].name.toLowerCase()];
-
+  const dest = resolveDestination(selected);
   window.location.href = dest;
 }
 
