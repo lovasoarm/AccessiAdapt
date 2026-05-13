@@ -1,17 +1,26 @@
-import pyttsx3
+try:
+    import pyttsx3
+    ENGINE_AVAILABLE = True
+except ImportError:
+    ENGINE_AVAILABLE = False
+    pyttsx3 = None
 
-engine = None
+_engine = None
 
 def get_engine():
-    global engine
-    if engine is None:
-        engine = pyttsx3.init()
-        engine.setProperty('rate', 150)
-    return engine
+    global _engine
+    if not ENGINE_AVAILABLE:
+        return None
+    if _engine is None:
+        _engine = pyttsx3.init()
+        _engine.setProperty('rate', 150)
+    return _engine
 
 def speak(text):
     try:
-        get_engine().say(text)
-        get_engine().runAndWait()
+        engine = get_engine()
+        if engine:
+            engine.say(text)
+            engine.runAndWait()
     except:
         pass

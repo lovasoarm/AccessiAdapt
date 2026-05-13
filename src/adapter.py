@@ -26,9 +26,45 @@ def build_config(profiles_set):
     return config
 
 def apply_config(widget, config):
-    if config["contrast"]:
-        widget.configure(bg="#000000", fg="#ffffff")
+    """
+    Applique les configurations d'accessibilité à un widget Tkinter.
+    Ignore les erreurs si le widget ne supporte pas une option.
+    """
+    if config.get("contrast", False):
+        bg = "#000000"
+        fg = "#ffffff"
     else:
-        widget.configure(bg="#0e0e0c", fg="#f0eee6")
-    if config["font_size"] == "large":
-        widget.option_add("*Font", "Helvetica 14")
+        bg = "#0e0e0c"
+        fg = "#f0eee6"
+
+    # Appliquer bg (fond)
+    try:
+        widget.configure(bg=bg)
+    except:
+        pass
+
+    # Appliquer fg (couleur du texte) si le widget le supporte
+    try:
+        widget.configure(fg=fg)
+    except:
+        pass
+
+    # Gestion de la taille de police
+    if config.get("font_size") == "large":
+        font = ("Inter", 16)
+    elif config.get("font_size") == "medium":
+        font = ("Inter", 14)
+    else:
+        font = ("Inter", 12)
+
+    try:
+        widget.configure(font=font)
+    except:
+        pass
+
+    # Pour les boutons, élargir si demandé
+    if config.get("large_buttons", False):
+        try:
+            widget.configure(padx=30, pady=20)
+        except:
+            pass

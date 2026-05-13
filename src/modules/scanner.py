@@ -1,4 +1,5 @@
 import tkinter as tk
+
 class Scanner:
     def __init__(self, buttons, label_widget, actions):
         self.buttons = buttons

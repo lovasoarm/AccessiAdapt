@@ -8,6 +8,7 @@ class ScreenSelect(tk.Frame):
         super().__init__(parent, bg="#0e0e0c")
         self.app = app
         self.selected = set()
+        self.card_checkboxes = {}
 
         container = tk.Frame(self, bg="#0e0e0c")
         container.pack(expand=True, padx=40, pady=40)
@@ -28,11 +29,14 @@ class ScreenSelect(tk.Frame):
 
         self.cards = {}
         for key, data in PROFILES.items():
-            card = self.make_card(key, data["name"], data["adapt"])
+            card, chk = self.make_card(key, data["name"], data["adapt"])
             card.pack(side=tk.LEFT, fill=tk.BOTH, expand=True, padx=5)
+            self.cards[key] = card
+            self.card_checkboxes[card] = chk
 
-        self.std_card = self.make_standard_card()
+        self.std_card, self.std_chk = self.make_standard_card()
         self.std_card.pack(fill=tk.X, pady=20)
+        self.card_checkboxes[self.std_card] = self.std_chk
 
         self.footer = tk.Frame(container, bg="#0e0e0c")
         self.footer.pack(fill=tk.X, pady=20)
@@ -43,9 +47,8 @@ class ScreenSelect(tk.Frame):
 
     def make_card(self, key, name, desc):
         frame = tk.Frame(self.grid_frame, bg="#1a1a17", highlightbackground="#2c2c28", highlightthickness=1, relief=tk.FLAT)
-        frame._chk = tk.Label(frame, text="✓", fg="#0e0e0c", bg="#1a1a17", font=("Inter", 12))
-        frame._chk.pack(side=tk.RIGHT, padx=10, pady=10)
-        frame._chk.place_forget()
+        chk = tk.Label(frame, text="✓", fg="#0e0e0c", bg="#1a1a17", font=("Inter", 12))
+        chk.place_forget()
 
         name_lbl = tk.Label(frame, text=name, font=("Inter", 18, "bold"), fg="#f0eee6", bg="#1a1a17")
         name_lbl.pack(anchor="w", padx=20, pady=(20,5))
@@ -55,12 +58,11 @@ class ScreenSelect(tk.Frame):
         frame.bind("<Button-1>", lambda e, k=key: self.toggle_profile(k))
         name_lbl.bind("<Button-1>", lambda e, k=key: self.toggle_profile(k))
         desc_lbl.bind("<Button-1>", lambda e, k=key: self.toggle_profile(k))
-        return frame
+        return frame, chk
 
     def make_standard_card(self):
         frame = tk.Frame(self.grid_frame, bg="#1a1a17", highlightbackground="#2c2c28", highlightthickness=1)
-        chk = tk.Label(frame, text="✓", fg="#0e0e0c", bg="#1a1a17")
-        chk.pack(side=tk.RIGHT, padx=10, pady=10)
+        chk = tk.Label(frame, text="✓", fg="#0e0e0c", bg="#1a1a17", font=("Inter", 12))
         chk.place_forget()
 
         icon = tk.Label(frame, text="⚙️", font=("Inter", 20), bg="#1a1a17", fg="#8a8880")
@@ -76,8 +78,7 @@ class ScreenSelect(tk.Frame):
         name_lbl.bind("<Button-1>", lambda e: self.toggle_standard())
         sub_lbl.bind("<Button-1>", lambda e: self.toggle_standard())
         icon.bind("<Button-1>", lambda e: self.toggle_standard())
-        frame._chk = chk
-        return frame
+        return frame, chk
 
     def toggle_profile(self, key):
         if "s" in self.selected:
@@ -105,12 +106,13 @@ class ScreenSelect(tk.Frame):
         self.update_footer()
 
     def set_card_selected(self, card, selected):
+        chk = self.card_checkboxes[card]
         if selected:
             card.configure(highlightbackground="#f0eee6", highlightthickness=2)
-            card._chk.place(relx=1, x=-10, y=10, anchor="ne")
+            chk.place(relx=1, x=-10, y=10, anchor="ne")
         else:
             card.configure(highlightbackground="#2c2c28", highlightthickness=1)
-            card._chk.place_forget()
+            chk.place_forget()
 
     def update_footer(self):
         if len(self.selected) == 0:
