@@ -1,109 +1,95 @@
 import tkinter as tk
-from ui.theme import get_colors, PAD
-from adapter import build_config
+from adapter import build_config, apply_config
 from modules.speech import speak
-from modules.analytics import log_event
-
-ACTIONS = ["Lire un message", "Écrire un message", "Paramètres", "Quitter"]
-
 
 class ModeVisuel(tk.Frame):
-    def __init__(self, master, profiles: set, on_back):
-        config = build_config(profiles)
-        self.c = get_colors(config["contrast"])
-        super().__init__(master, bg=self.c["bg"])
-        self.profiles    = profiles
-        self.on_back     = on_back
-        self.config_     = config
-        self.fs          = config["font_size"]
-        self.focus_index = 0
-        self.items       = []
-        self._build()
-        self.after(100, lambda: self._set_focus(0))
+    def __init__(self, parent, app, profiles_str):
+        super().__init__(parent, bg="#0e0e0c")
+        self.app = app
+        profiles = set(profiles_str.split(",")) if profiles_str else set()
+        self.config = build_config(profiles)
+        apply_config(self, self.config)
 
-    def _build(self):
-        c, fs = self.c, self.fs
+        container = tk.Frame(self, bg=self["bg"])
+        container.pack(expand=True, padx=40, pady=40)
 
-        tk.Label(self, text="MODE VISUEL", font=("Inter", 10),
-                 bg=c["bg"], fg=c["sub"]).pack(anchor="w", padx=PAD, pady=(PAD, 4))
+        title = tk.Label(container, text="Mode Visuel", font=("Inter", 12), fg="#8a8880", bg=self["bg"])
+        title.pack(anchor="w")
+        heading = tk.Label(container, text="Menu principal", font=("Inter", 28, "bold"), fg=self["fg"], bg=self["bg"])
+        heading.pack(anchor="w", pady=(10,5))
+        instr = tk.Label(container, text="Navigue avec les flèches ↑ ↓. Appuie sur Entrée pour valider.", font=("Inter", 14), fg="#8a8880", bg=self["bg"])
+        instr.pack(anchor="w", pady=(0,20))
 
-        tk.Label(self, text="Menu principal", font=("Inter", fs + 12, "bold"),
-                 bg=c["bg"], fg=c["text"]).pack(anchor="w", padx=PAD, pady=(0, 6))
+        self.tts_bar = tk.Frame(container, bg="#1a1a17", highlightbackground="#2c2c28", highlightthickness=1)
+        self.tts_bar.pack(fill=tk.X, pady=10)
+        dot = tk.Label(self.tts_bar, text="●", fg="#f0eee6", bg="#1a1a17", font=("Inter", 10))
+        dot.pack(side=tk.LEFT, padx=12)
+        self.tts_text = tk.Label(self.tts_bar, text='"Chargement..."', font=("Inter", 12, "italic"), fg="#8a8880", bg="#1a1a17")
+        self.tts_text.pack(side=tk.LEFT)
 
-        tk.Label(self,
-                 text="Navigue avec ↑ ↓ ou clique. Appuie sur Entrée pour valider.",
-                 font=("Inter", fs), bg=c["surface"], fg=c["sub"],
-                 padx=14, pady=12).pack(fill="x", padx=PAD, pady=(0, 16))
+        self.focus_bar = tk.Label(container, text="Focus actuel : —", font=("Inter", 12), fg="#8a8880", bg="#1a1a17", anchor="w", padx=10, pady=8)
+        self.focus_bar.pack(fill=tk.X, pady=10)
 
-        self.tts_label = tk.Label(self, text='"Chargement..."',
-                                  font=("Inter", fs - 2, "italic"),
-                                  bg=c["surface"], fg=c["sub"], padx=14, pady=10)
-        self.tts_label.pack(fill="x", padx=PAD, pady=(0, 10))
+        self.actions = ["Lire un message", "Écrire un message", "Paramètres", "Quitter"]
+        self.action_frame = tk.Frame(container, bg=self["bg"])
+        self.action_frame.pack(fill=tk.BOTH, expand=True)
+        self.buttons = []
+        self.current_focus = 0
+        for i, action in enumerate(self.actions):
+            btn = tk.Button(self.action_frame, text=action, font=("Inter", 16), bg="#1a1a17", fg=self["fg"],
+                            relief=tk.FLAT, anchor="w", padx=20, pady=15,
+                            command=lambda a=action, idx=i: self.select_action(idx))
+            btn.pack(fill=tk.X, pady=5)
+            self.buttons.append(btn)
+        self.update_focus()
 
-        self.focus_bar = tk.Label(self, text="Focus actuel : —",
-                                  font=("Inter", 12), bg=c["surface"],
-                                  fg=c["sub"], padx=14, pady=8)
-        self.focus_bar.pack(fill="x", padx=PAD, pady=(0, 16))
+        self.feedback = tk.Label(container, text="", font=("Inter", 14), bg=self["bg"], fg="#f0eee6")
+        self.feedback.pack(fill=tk.X, pady=10)
 
-        for i, label in enumerate(ACTIONS):
-            self._make_item(i, label)
+        footer = tk.Frame(container, bg=self["bg"])
+        footer.pack(fill=tk.X, pady=20)
+        hint = tk.Label(footer, text="Mode contraste fort · Synthèse vocale active", font=("Inter", 12), fg="#8a8880", bg=self["bg"])
+        hint.pack(side=tk.LEFT)
+        back_btn = tk.Button(footer, text="Changer de profil", command=self.go_back, bg="#1a1a17", fg=self["fg"], font=("Inter", 12))
+        back_btn.pack(side=tk.RIGHT)
 
-        self.feedback = tk.Label(self, text="", font=("Inter", fs),
-                                 bg=c["surface"], fg=c["text"], padx=14, pady=12)
+        self.bind_all("<Up>", lambda e: self.move_focus(-1))
+        self.bind_all("<Down>", lambda e: self.move_focus(1))
+        self.bind_all("<Return>", lambda e: self.select_action(self.current_focus))
+        self.focus_set()
 
-        sep = tk.Frame(self, height=1, bg=c["border"])
-        sep.pack(fill="x", padx=PAD, pady=16)
+    def update_focus(self):
+        for i, btn in enumerate(self.buttons):
+            if i == self.current_focus:
+                btn.config(highlightbackground="#f0eee6", highlightthickness=2)
+            else:
+                btn.config(highlightbackground="#2c2c28", highlightthickness=1)
+        self.focus_bar.config(text=f"Focus actuel : {self.actions[self.current_focus]}")
+        self.speak_text(self.actions[self.current_focus])
 
-        footer = tk.Frame(self, bg=c["bg"])
-        footer.pack(fill="x", padx=PAD, pady=(0, PAD))
+    def move_focus(self, delta):
+        self.current_focus = (self.current_focus + delta) % len(self.actions)
+        self.update_focus()
+        self.buttons[self.current_focus].focus_set()
 
-        tk.Label(footer, text="Mode contraste fort · Synthèse vocale active",
-                 font=("Inter", 12), bg=c["bg"], fg=c["sub"]).pack(side="left")
+    def select_action(self, idx):
+        action = self.actions[idx]
+        if action == "Quitter":
+            self.go_back()
+            return
+        self.speak_text(f"{action} — ouvert")
+        self.feedback.config(text=f"{action} : ouvert")
+        self.after(2500, lambda: self.feedback.config(text=""))
 
-        tk.Button(footer, text="Changer de profil", font=("Inter", 13),
-                  bg=c["bg"], fg=c["text"], relief="solid",
-                  bd=1, padx=16, pady=8, cursor="hand2",
-                  command=self.on_back).pack(side="right")
+    def speak_text(self, text):
+        self.tts_text.config(text=f'"{text}"')
+        speak(text)
 
-        self.bind_all("<Up>",    lambda e: self._move(-1))
-        self.bind_all("<Down>",  lambda e: self._move(1))
-        self.bind_all("<Return>",lambda e: self._select(self.focus_index))
-
-    def _make_item(self, i, label):
-        c, fs = self.c, self.fs
-        frame = tk.Frame(self, bg=c["surface"], cursor="hand2",
-                         highlightbackground=c["border"], highlightthickness=1)
-        frame.pack(fill="x", padx=PAD, pady=4)
-
-        tk.Label(frame, text=label, font=("Inter", fs, "bold"),
-                 bg=c["surface"], fg=c["text"],
-                 padx=20, pady=18).pack(side="left", fill="x", expand=True)
-
-        frame.bind("<Button-1>", lambda e, idx=i: self._select(idx))
-        for child in frame.winfo_children():
-            child.bind("<Button-1>", lambda e, idx=i: self._select(idx))
-
-        self.items.append(frame)
-
-    def _set_focus(self, i):
-        self.focus_index = i
-        c = self.c
-        for idx, item in enumerate(self.items):
-            on = idx == i
-            border = c["text"] if on else c["border"]
-            item.configure(highlightbackground=border,
-                           highlightthickness=2 if on else 1)
-        self.focus_bar.configure(text=f"Focus actuel : {ACTIONS[i]}")
-        self.tts_label.configure(text=f'"{ACTIONS[i]}"')
-        speak(ACTIONS[i])
-
-    def _move(self, direction):
-        nxt = (self.focus_index + direction) % len(ACTIONS)
-        self._set_focus(nxt)
-
-    def _select(self, i):
-        log_event(self.profiles, ACTIONS[i])
-        speak(ACTIONS[i] + " — ouvert")
-        self.feedback.configure(text=ACTIONS[i] + " : ouvert")
-        self.feedback.pack(fill="x", padx=PAD, pady=(0, 12))
-        self.after(2500, lambda: self.feedback.pack_forget())
+    def go_back(self):
+        from ui.screen_select import ScreenSelect
+        self.unbind_all("<Up>")
+        self.unbind_all("<Down>")
+        self.unbind_all("<Return>")
+        self.app.current_frame.destroy()
+        self.app.current_frame = ScreenSelect(self.app.root, self.app)
+        self.app.current_frame.pack(fill=tk.BOTH, expand=True)

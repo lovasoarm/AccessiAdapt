@@ -1,39 +1,34 @@
-def build_config(profiles: set) -> dict:
+def build_config(profiles_set):
     config = {
-        "font_size":    14,
-        "contrast":     False,
-        "tts":          False,
-        "captions":     False,
-        "large_buttons":False,
-        "single_switch":False,
-        "simplified":   False,
-        "scan_speed":   1500,
+        "font_size": "normal",
+        "contrast": False,
+        "tts": False,
+        "captions": False,
+        "large_buttons": False,
+        "single_switch": False,
+        "simplified": False,
     }
-
-    if "v" in profiles:
-        config["contrast"]   = True
-        config["tts"]        = True
-        config["font_size"]  = 22
-
-    if "c" in profiles:
+    if "v" in profiles_set:
+        config["contrast"] = True
+        config["tts"] = True
+        config["font_size"] = "large"
+    if "c" in profiles_set:
         config["simplified"] = True
-        config["font_size"]  = max(config["font_size"], 18)
-        config["tts"]        = False
-
-    if "a" in profiles:
-        config["captions"]   = True
-
-    if "m" in profiles:
+        if config["font_size"] != "large":
+            config["font_size"] = "medium"
+        config["tts"] = False
+    if "a" in profiles_set:
+        config["captions"] = True
+    if "m" in profiles_set:
         config["large_buttons"] = True
         config["single_switch"] = True
-        config["font_size"]     = max(config["font_size"], 20)
-        config["tts"]           = False
-
+        config["tts"] = False
     return config
 
-
-def apply_theme(root, config: dict):
+def apply_config(widget, config):
     if config["contrast"]:
-        root.configure(bg="#000000")
+        widget.configure(bg="#000000", fg="#ffffff")
     else:
-        root.configure(bg="#0e0e0c")
+        widget.configure(bg="#0e0e0c", fg="#f0eee6")
+    if config["font_size"] == "large":
+        widget.option_add("*Font", "Helvetica 14")
