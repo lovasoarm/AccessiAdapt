@@ -47,9 +47,11 @@ function applyConfig(config) {
     root.style.setProperty("--bg", "#000000");
     root.style.setProperty("--text", "#ffffff");
     root.style.setProperty("--surface", "#111111");
+    document.body.classList.add("high-contrast");
   }
 
   if (config.fontSize === "large") {
+    document.body.classList.add("large-text");
     root.style.setProperty("--font-size-action", "26px");
   } else if (config.fontSize === "medium") {
     root.style.setProperty("--font-size-action", "20px");
