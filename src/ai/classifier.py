@@ -1,28 +1,22 @@
-from sklearn.tree import DecisionTreeClassifier
+# Optionnel : utilise scikit-learn si disponible
+try:
+    from sklearn.tree import DecisionTreeClassifier
+    SKLEARN_AVAILABLE = True
+except ImportError:
+    SKLEARN_AVAILABLE = False
 
-X_TRAIN = [
-    [4.5, 10, 0, 0],
-    [1.2,  1, 1, 0],
-    [5.0,  8, 0, 1],
-    [3.5,  7, 0, 0],
-    [1.0,  0, 1, 0],
-    [4.8, 12, 0, 1],
-]
+class ProfileClassifier:
+    def __init__(self):
+        self.model = None
+        if SKLEARN_AVAILABLE:
+            self.model = DecisionTreeClassifier()
 
-Y_TRAIN = [
-    "single_switch",
-    "voice_mode",
-    "large_buttons",
-    "standard",
-    "voice_mode",
-    "single_switch",
-]
+    def train(self, X, y):
+        if self.model:
+            self.model.fit(X, y)
 
-_model = DecisionTreeClassifier(random_state=42)
-_model.fit(X_TRAIN, Y_TRAIN)
-
-
-def recommend(avg_click_time: float, click_errors: int,
-              keyboard_usage: int, voice_usage: int) -> str:
-    features = [[avg_click_time, click_errors, keyboard_usage, voice_usage]]
-    return _model.predict(features)[0]
+    def predict(self, features):
+        if self.model:
+            return self.model.predict([features])[0]
+        # Fallback simple
+        return "standard"

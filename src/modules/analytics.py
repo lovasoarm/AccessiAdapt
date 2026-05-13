@@ -1,31 +1,24 @@
 import json
 import os
-import time
+from datetime import datetime
 
-LOG_PATH = os.path.join(os.path.dirname(__file__), "..", "logs", "usage.json")
+LOG_FILE = "usage_log.json"
 
-def _ensure_log():
-    os.makedirs(os.path.dirname(LOG_PATH), exist_ok=True)
-    if not os.path.exists(LOG_PATH):
-        with open(LOG_PATH, "w") as f:
-            json.dump([], f)
-
-def log_event(profiles: set, action: str, extra: dict = None):
-    _ensure_log()
-    with open(LOG_PATH, "r") as f:
-        data = json.load(f)
-    entry = {
-        "timestamp": time.time(),
-        "profiles":  list(profiles),
-        "action":    action,
+def log_event(event_type, details=None):
+    if details is None:
+        details = {}
+    log_entry = {
+        "timestamp": datetime.now().isoformat(),
+        "event": event_type,
+        "details": details
     }
-    if extra:
-        entry.update(extra)
-    data.append(entry)
-    with open(LOG_PATH, "w") as f:
-        json.dump(data, f, indent=2)
-
-def load_logs() -> list:
-    _ensure_log()
-    with open(LOG_PATH, "r") as f:
-        return json.load(f)
+    logs = []
+    if os.path.exists(LOG_FILE):
+        with open(LOG_FILE, "r") as f:
+            try:
+                logs = json.load(f)
+            except:
+                logs = []
+    logs.append(log_entry)
+    with open(LOG_FILE, "w") as f:
+        json.dump(logs, f, indent=2)
