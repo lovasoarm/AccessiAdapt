@@ -91,7 +91,7 @@ function goBack() {
 function resolveDestination(selected) {
   const profiles = [...selected].join(",");
 
-  if (selected.has("s") || selected.size >= 2) {
+  if (selected.has("s") || selected.size === 4) {
     return "mode_standard.html?profiles=" + profiles;
   }
   if (selected.has("m")) return "mode_moteur.html?profiles=" + profiles;
