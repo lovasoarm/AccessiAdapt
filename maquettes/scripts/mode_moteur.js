@@ -11,7 +11,7 @@ let scanIndex = 0;
 let scanTimer = null;
 let scanSpeed = 1500;
 
-function init() {
+function setupMotorMode() {
   const profiles = getProfiles();
   const config = buildConfig(profiles);
   applyConfig(config);
@@ -94,4 +94,11 @@ function updateSpeedLabel() {
     labels[val - 1] || "Normale";
 }
 
-document.addEventListener("DOMContentLoaded", init);
+function setClicked(el) {
+  document
+    .querySelectorAll(".action-item")
+    .forEach((item) => item.classList.remove("clicked"));
+  el.classList.add("clicked");
+}
+
+document.addEventListener("DOMContentLoaded", setupMotorMode);
