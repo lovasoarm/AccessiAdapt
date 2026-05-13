@@ -37,13 +37,13 @@ def apply_config(widget, config):
         bg = "#0e0e0c"
         fg = "#f0eee6"
 
-    # Appliquer bg (fond)
+  
     try:
         widget.configure(bg=bg)
     except:
         pass
 
-    # Appliquer fg (couleur du texte) si le widget le supporte
+
     try:
         widget.configure(fg=fg)
     except:
@@ -62,7 +62,7 @@ def apply_config(widget, config):
     except:
         pass
 
-    # Pour les boutons, élargir si demandé
+ 
     if config.get("large_buttons", False):
         try:
             widget.configure(padx=30, pady=20)

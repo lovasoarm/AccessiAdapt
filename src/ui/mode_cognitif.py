@@ -38,10 +38,10 @@ class ModeCognitif(tk.Frame):
         self.guide_box.pack(fill=tk.X, pady=10)
 
         self.actions = [
-            {"label": "Lire", "guide": "Tu vas voir tes messages reçus. Une liste simple, un message à la fois.", "icon": "📖"},
-            {"label": "Écrire", "guide": "Tu vas écrire un message. On t'aide étape par étape.", "icon": "✏️"},
-            {"label": "Paramètres", "guide": "Tu peux changer ton profil ou la vitesse de l'interface.", "icon": "⚙️"},
-            {"label": "Quitter", "guide": "L'application va se fermer. Tes données sont sauvegardées.", "icon": "🚪"}
+            {"label": "Lire", "guide": "Tu vas voir tes messages reçus. Une liste simple, un message à la fois."},
+            {"label": "Écrire", "guide": "Tu vas écrire un message. On t'aide étape par étape."},
+            {"label": "Paramètres", "guide": "Tu peux changer ton profil ou la vitesse de l'interface."},
+            {"label": "Quitter", "guide": "L'application va se fermer. Tes données sont sauvegardées."}
         ]
         self.action_frame = tk.Frame(container, bg=self.bg_color)
         self.action_frame.pack(fill=tk.BOTH, expand=True)
