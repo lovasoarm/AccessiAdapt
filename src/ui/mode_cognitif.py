@@ -49,7 +49,7 @@ class ModeCognitif(tk.Frame):
         for i, action in enumerate(self.actions):
             btn_frame = tk.Frame(self.action_frame, bg=self.surface_color, highlightbackground="#2c2c28", highlightthickness=1)
             btn_frame.pack(fill=tk.X, pady=5)
-            icon_lbl = tk.Label(btn_frame, text=action["icon"], font=("Inter", 20), bg=self.surface_color, fg=self.fg_color)
+            icon_lbl = tk.Label(btn_frame, text="●", font=("Inter", 20), bg=self.surface_color, fg=self.fg_color)
             icon_lbl.pack(side=tk.LEFT, padx=15)
             text_lbl = tk.Label(btn_frame, text=action["label"], font=("Inter", 16), bg=self.surface_color, fg=self.fg_color)
             text_lbl.pack(side=tk.LEFT, fill=tk.X, expand=True)
