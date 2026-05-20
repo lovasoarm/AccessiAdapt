@@ -108,12 +108,8 @@ En cas de sélection multiple : **Moteur > Visuel > Cognitif > Auditif**. Si deu
 - `modules/analytics.py` : journalisation des événements en JSON
 - `ai/classifier.py` : classifieur sklearn pour recommandation automatique de mode
 
----
-
 ## Auteur
 
 **Lovasoarm** aka ARAMIS
-
----
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:2c2c28,50:1a1a17,100:0e0e0c&height=100&section=footer" />
